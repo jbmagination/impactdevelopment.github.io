@@ -37,7 +37,10 @@ task('minify-js', async () =>
   .pipe(dest('build/pub/js'))
 )
 
-task('copy-images', async () => src('img/*.png').pipe(copy('build/pub/img/')))
+task('copy-static', async () => src([
+  'img/*.png',
+  'google*.html'
+]).pipe(copy('build/pub/')))
 
 task('build-favicons', () => src('Icon.png')//grr sharp fails to render the svg :-(
   .pipe(favicons({
@@ -83,7 +86,7 @@ task('build-favicons', () => src('Icon.png')//grr sharp fails to render the svg 
   .pipe(dest('build/pub/')))
 
 // TODO CNAME, google stuff, browserconfig, changelog
-task('build', parallel(series('build-favicons', 'build-html'), 'minify-css', 'minify-js', 'copy-images'))
+task('build', parallel(series('build-favicons', 'build-html'), 'minify-css', 'minify-js', 'copy-static'))
 
 task('watch-all', async () => {
   watch('html/*.html', series('build-html'))
