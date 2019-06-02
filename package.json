@@ -1,0 +1,31 @@
+{
+  "name": "impact-website",
+  "version": "1.0.0",
+  "description": "The Impact website",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ImpactDevelopment/impactdevelopment.github.io.git"
+  },
+  "author": "Impact Developers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ImpactDevelopment/impactdevelopment.github.io/issues"
+  },
+  "homepage": "https://github.com/ImpactDevelopment/impactdevelopment.github.io#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-favicons": "^2.3.1",
+    "gulp-gh-pages": "^0.6.0-6",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
