@@ -88,6 +88,7 @@ task('build-favicons', () => src('Icon.png')//grr sharp fails to render the svg 
 // TODO CNAME, google stuff, browserconfig, changelog
 task('build', parallel(series('build-favicons', 'build-html'), 'minify-css', 'minify-js', 'copy-static'))
 
+// TODO serve/browse/hotreload/whatever
 task('watch-all', async () => {
   watch('html/*.html', series('build-html'))
   watch('css/*.css', series('minify-css'))
@@ -96,7 +97,7 @@ task('watch-all', async () => {
 
 task('deploy', () => src(['build/pub/**/*', '!build/pub/favicon.html']).pipe(ghPages({
   cacheDir: 'build/gh-pages/',
-  push: false,
+  push: false, // FIXME must be true or configured by .env or something
   branch: 'gh-pages' //FIXME needs to be master
 })));
 
