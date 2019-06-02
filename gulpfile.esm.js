@@ -7,6 +7,11 @@ import ghPages from 'gulp-gh-pages';
 import rename from 'gulp-rename';
 import concat from 'gulp-concat'
 import copy from 'gulp-copy';
+import del from 'del';
+
+task('clean', function(){
+     return del('build/pub/**', {force:true});
+});
 
 // TODO use a template system like {{handlebars}}
 task('build-html', async () =>
@@ -86,7 +91,7 @@ task('build-favicons', () => src('Icon.png')//grr sharp fails to render the svg 
   .pipe(dest('build/pub/')))
 
 // TODO CNAME, google stuff, browserconfig, changelog
-task('build', parallel(series('build-favicons', 'build-html'), 'minify-css', 'minify-js', 'copy-static'))
+task('build', series('clean', parallel(series('build-favicons', 'build-html'), 'minify-css', 'minify-js', 'copy-static')))
 
 // TODO serve/browse/hotreload/whatever
 task('watch-all', async () => {
